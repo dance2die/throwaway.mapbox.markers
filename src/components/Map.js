@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import CityPin from "./CityPin";
 import CityInfo from "./CityInfo";
 import PopupInfo from "./PopupInfo";
-import data from "../input.json";
+// import data from "../input.json";
 
 const defaultLocation = {
   latitude: 40.775306,
@@ -16,15 +16,12 @@ class Markers extends Component {
   buildMarkers = data =>
     Object.keys(data).map(groupName => {
       const group = data[groupName];
-      // console.log(`group`, group);
 
       return group.events.map(event => (
         <Marker
           key={event.id}
           latitude={event.venue.lat}
           longitude={event.venue.lon}
-          offsetLeft={-20}
-          offsetTop={-10}
         >
           <CityPin
             size={20}
@@ -93,7 +90,6 @@ class Map extends Component {
     if (!popupInfo) return;
 
     const { group, event } = popupInfo;
-    // console.log(`this.state.popupInfo`, this.state.popupInfo);
 
     return (
       <Popup
@@ -116,34 +112,9 @@ class Map extends Component {
 
   render() {
     const { viewport } = this.state;
+    const { data } = this.props;
 
     return (
-      // textAlign: left
-      // https://github.com/uber/react-map-gl/issues/326#issuecomment-371185515
-      // <div style={{ width: "95%", height: "95%" }}>
-      // <Marker
-      //   latitude={defaultLocation.latitude}
-      //   longitude={defaultLocation.longitude}
-      //   offsetLeft={-20}
-      //   offsetTop={-10}
-      // >
-      //   <CityPin
-      //     size={20}
-      //     onClick={() =>
-      //       this.setState(prevState => ({
-      //         ...prevState,
-      //         popupInfo: {
-      //           ...viewport,
-      //           city: "New York",
-      //           state: "NY",
-      //           image:
-      //             "http://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/240px-Above_Gotham.jpg"
-      //         }
-      //       }))
-      //     }
-      //   />
-      // </Marker>
-
       <div>
         <ReactMapGL
           style={{ textAlign: "left" }}
